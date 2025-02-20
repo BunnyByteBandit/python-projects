@@ -1,0 +1,23 @@
+def tip_calculator():
+    # Get bill amount from the user
+    amount = input("Enter the bill amount: ")
+
+    try:
+        amount = float(amount)  # Convert bill amount to a float
+        
+        # Get tip percentage
+        percent = input("Enter tip percentage (like 15 for 15%): ")
+        percent = float(percent)  # Convert percentage to float
+        
+        tip = (percent / 100) * amount  # Calculate the tip
+        total = amount + tip  # Add the tip to the bill
+
+        # Show the results
+        print("Tip: $", round(tip, 2))  # Show tip
+        print("Total bill: $", round(total, 2))  # Show total
+
+    except ValueError:
+        print("You need to put numbers!")  # Error message if user puts non-numbers
+
+if __name__ == "__main__":
+    tip_calculator()  # Start the calculator
