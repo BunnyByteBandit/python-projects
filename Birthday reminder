@@ -1,0 +1,84 @@
+import datetime
+
+# Birthdays stored here
+bday_list = {
+    "Alice": "1990-05-15",
+    "Bob": "1988-11-23",
+    "Charlie": "2000-02-10"
+}
+
+# Add a birthday function
+def add_bday(n, bday):
+    bday_list[n] = bday
+    print(f"Added {n}'s bday: {bday}")
+
+# Update birthday function
+def update_bday(n, new_bday):
+    if n in bday_list:
+        bday_list[n] = new_bday
+        print(f"Updated {n}'s bday to {new_bday}")
+    else:
+        print(f"{n} not in list")
+
+# Remove birthday function
+def remove_bday(n):
+    if n in bday_list:
+        del bday_list[n]
+        print(f"Removed {n}'s bday")
+    else:
+        print(f"{n} not in list")
+
+# Check if today is a bday
+def check_bday_today():
+    today = datetime.date.today()
+
+    for name, bday in bday_list.items():
+        bday_date = datetime.datetime.strptime(bday, "%Y-%m-%d").date()
+        if bday_date.month == today.month and bday_date.day == today.day:
+            print(f"Today is {name}'s birthday!")
+
+# Display all birthdays
+def display_bdays():
+    if bday_list:
+        print("\nAll Birthdays:")
+        for name, bday in bday_list.items():
+            print(f"{name}: {bday}")
+    else:
+        print("No birthdays in list!")
+
+# Main loop
+def main():
+    while True:
+        print("\nMenu:")
+        print("1. Check today's birthdays")
+        print("2. Add a new bday")
+        print("3. Update a bday")
+        print("4. Remove a bday")
+        print("5. Display all bdays")
+        print("6. Exit")
+
+        choice = input("Choose option: ")
+
+        if choice == "1":
+            check_bday_today()
+        elif choice == "2":
+            name = input("Name: ")
+            bday = input("Bday (YYYY-MM-DD): ")
+            add_bday(name, bday)
+        elif choice == "3":
+            name = input("Name to update: ")
+            new_bday = input("New bday (YYYY-MM-DD): ")
+            update_bday(name, new_bday)
+        elif choice == "4":
+            name = input("Name to remove: ")
+            remove_bday(name)
+        elif choice == "5":
+            display_bdays()
+        elif choice == "6":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid input, try again!")
+
+if __name__ == "__main__":
+    main()
