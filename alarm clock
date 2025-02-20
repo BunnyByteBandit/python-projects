@@ -1,0 +1,38 @@
+import time  # Import time module to work with time
+import winsound  # Import winsound module to play sound (works on Windows)
+
+# Function to set alarm time
+def set_alarm():
+    alarm_time = input("Enter alarm time in HH:MM format (24-hour): ")  # Ask user for alarm time
+    try:
+        # Split the input into hours and minutes
+        alarm_hour, alarm_minute = alarm_time.split(":")  
+        
+        # Convert hours and minutes into integers
+        alarm_hour = int(alarm_hour)  
+        alarm_minute = int(alarm_minute)  
+        
+        # Check if the time is valid (between 00:00 and 23:59)
+        if alarm_hour < 0 or alarm_hour > 23 or alarm_minute < 0 or alarm_minute > 59:
+            print("Invalid time. Try again!")  # If time is invalid
+            return  # Stop the function
+
+        print(f"Alarm set for {alarm_time}. Waiting for the alarm...")
+
+        # Keep checking the time every 30 seconds
+        while True:
+            current_time = time.strftime("%H:%M")  # Get current time in HH:MM format
+
+            if current_time == alarm_time:  # If current time matches alarm time
+                print("It's time! Alarm ringing!")  # Print message when time is up
+                winsound.Beep(1000, 1000)  # Play a beep sound for 1 second (Windows only)
+                break  # Stop the loop when alarm goes off
+
+            time.sleep(30)  # Wait for 30 seconds before checking again
+
+    except ValueError:  # If user enters a wrong format for time
+        print("Error: Please use HH:MM format!")  # Let user know there's an error
+
+# Run the alarm clock
+if __name__ == "__main__":  # If this script is being executed
+    set_alarm()  # Call the function to start the alarm
