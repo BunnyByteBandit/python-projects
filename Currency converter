@@ -1,0 +1,48 @@
+# Exchange rates for different currencies
+rates = {
+    "USD": 1,
+    "EUR": 0.92,
+    "GBP": 0.78,
+    "JPY": 134.45,
+    "INR": 82.75
+}
+
+# Function to convert currency
+def convert(amount, from_curr, to_curr):
+    if from_curr == to_curr:
+        return amount
+    rate = rates.get(to_curr) / rates.get(from_curr)
+    return amount * rate
+
+# Function to get user input
+def get_input():
+    amount = float(input("How much do you want to convert? "))
+    from_curr = input("Enter currency to convert from (e.g., USD, EUR): ").upper()
+    to_curr = input("Enter currency to convert to (e.g., USD, EUR): ").upper()
+    return amount, from_curr, to_curr
+
+# Function to show the result
+def show_result(amount, from_curr, to_curr, result):
+    print(f"{amount} {from_curr} = {result:.2f} {to_curr}")
+
+# Main loop
+def main():
+    while True:
+        print("\nCurrency Converter")
+        print("1. Convert Currency")
+        print("2. Exit")
+        
+        option = input("Pick an option: ")
+
+        if option == "1":
+            amount, from_curr, to_curr = get_input()
+            result = convert(amount, from_curr, to_curr)
+            show_result(amount, from_curr, to_curr, result)
+        elif option == "2":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice, try again!")
+
+if __name__ == "__main__":
+    main()
