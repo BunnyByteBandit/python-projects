@@ -1,0 +1,21 @@
+import time  # Import the time module
+
+# Function to start countdown timer
+def countdown_timer():
+    seconds = input("Enter the time in seconds for countdown: ")  # Ask the user for time in seconds
+    try:
+        seconds = int(seconds)  # Convert the input to an integer
+        if seconds <= 0:
+            print("Please enter a positive number.")  # If input is negative or zero
+        else:
+            while seconds > 0:  # While there are seconds remaining
+                print(f"Time remaining: {seconds} seconds")  # Display the countdown
+                time.sleep(1)  # Wait for 1 second
+                seconds -= 1  # Decrease the time by 1 second
+            print("Time's up!")  # Notify the user when time is up
+    except ValueError:  # If the input is not a number
+        print("Please enter a valid number.")
+
+# Main function to run the app
+if __name__ == "__main__":  # If the script is being run
+    countdown_timer()  # Start the countdown timer
