@@ -1,0 +1,36 @@
+def converter():
+    # Take user input for temperature
+    t = input("Enter temperature: ")
+
+    try:
+        t = float(t)  # Convert the input to float
+        
+        # Take the unit input (C, F, or K)
+        u = input("Enter the unit (C for Celsius, F for Fahrenheit, K for Kelvin): ").upper()
+
+        if u == 'C':
+            f = (t * 9/5) + 32
+            k = t + 273.15
+            print(f"{t} Celsius = {f} Fahrenheit")
+            print(f"{t} Celsius = {k} Kelvin")
+
+        elif u == 'F':
+            c = (t - 32) * 5/9
+            k = c + 273.15
+            print(f"{t} Fahrenheit = {c} Celsius")
+            print(f"{t} Fahrenheit = {k} Kelvin")
+
+        elif u == 'K':
+            c = t - 273.15
+            f = (c * 9/5) + 32
+            print(f"{t} Kelvin = {c} Celsius")
+            print(f"{t} Kelvin = {f} Fahrenheit")
+
+        else:
+            print("Invalid unit, use C, F, or K.")  # Error if unit is invalid
+
+    except ValueError:
+        print("Please enter a valid number!")  # Error for invalid temperature input
+
+if __name__ == "__main__":
+    converter()  # Start the conversion process
