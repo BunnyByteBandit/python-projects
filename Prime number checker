@@ -1,0 +1,27 @@
+def check_prime():
+    n = input("Give me a number to check: ")
+
+    try:
+        n = int(n)  # Make sure the input is an integer
+        
+        if n < 2:
+            print(f"{n} is not prime.")  # Numbers less than 2 are not prime
+        else:
+            prime = True  # Assume number is prime initially
+
+            # Check if the number is divisible by any number from 2 to n-1
+            for i in range(2, n):
+                if n % i == 0:
+                    prime = False  # Not prime if divisible
+                    break
+
+            if prime:
+                print(f"{n} is prime.")  # It is prime if not divisible
+            else:
+                print(f"{n} is not prime.")  # It is not prime if divisible
+
+    except ValueError:
+        print("Please enter a number!")  # Handle non-numeric input
+
+if __name__ == "__main__":
+    check_prime()  # Start checking
