@@ -1,0 +1,44 @@
+import random  # Random module for the computer's move
+
+# Function to ask the user for their move
+def user_move():
+    print("Pick rock, paper or scissors: ")  # Ask user for input
+    move = input().lower()  # Get the move and turn it to lowercase
+    while move not in ['rock', 'paper', 'scissors']:  # Check if input is valid
+        print("That's not right! Pick rock, paper or scissors: ")
+        move = input().lower()  # Keep asking until valid input
+    return move  # Return the valid input
+
+# Function to randomly pick a move for the computer
+def computer_move():
+    options = ['rock', 'paper', 'scissors']  # List of computer choices
+    return random.choice(options)  # Pick a random option
+
+# Function to decide who won
+def who_wins(user, computer):
+    if user == computer:  # If both are the same, it's a tie
+        return "It's a tie!"
+    elif (user == 'rock' and computer == 'scissors') or (user == 'scissors' and computer == 'paper') or (user == 'paper' and computer == 'rock'):  # Check for user win
+        return "You win!"
+    else:  # If computer wins
+        return "Computer wins!"
+
+# Main loop to play the game
+def game_loop():
+    while True:  # Infinite loop for the game
+        user = user_move()  # Get user input
+        computer = computer_move()  # Get computer input
+
+        print(f"\nYou picked {user}")  # Show user input
+        print(f"Computer picked {computer}")  # Show computer input
+
+        result = who_wins(user, computer)  # Check who won
+        print(result)  # Show the result
+
+        play_again = input("\nPlay again? (yes/no): ").lower()  # Ask to play again
+        if play_again != 'yes':  # Exit if they don't want to play again
+            break
+
+# Start the game
+if __name__ == "__main__":
+    game_loop()  # Run the game loop
