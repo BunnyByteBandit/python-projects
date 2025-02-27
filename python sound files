@@ -1,0 +1,36 @@
+import winsound
+import time
+
+# Define frequencies for different keywords
+sound_map = {
+   "def": 400,
+   "if": 500,
+   "else": 600,
+   "for": 700,
+   "while": 800,
+   "return": 900,
+   "print": 1000
+}
+
+def play_sound(freq, duration=200):
+   winsound.Beep(freq, duration)
+
+def code_to_sound(code):
+   words = code.split()
+   for word in words:
+      if word in sound_map:
+         play_sound(sound_map[word])
+      else:
+         play_sound(300)  # Default sound for other words
+      time.sleep(0.1)
+
+# Example code input
+code_snippet = """
+def hello():
+   if True:
+      print("Hello, world!")
+   else:
+      return
+"""
+
+code_to_sound(code_snippet)
