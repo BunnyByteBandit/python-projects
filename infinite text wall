@@ -1,0 +1,18 @@
+import curses
+import time
+
+def moving_text(stdscr):
+    curses.curs_set(0)  # Hide the cursor
+    stdscr.nodelay(1)   # Non-blocking input
+    text = "Moving Text Art!"
+    height, width = stdscr.getmaxyx()  # Get screen size
+
+    while True:
+        for i in range(width - len(text)):
+            stdscr.clear()  # Clear the screen
+            stdscr.addstr(height // 2, i, text)  # Print the text at the current position
+            stdscr.refresh()  # Refresh the screen to show the new position
+            time.sleep(0.1)  # Control the speed of the movement
+
+if __name__ == "__main__":
+    curses.wrapper(moving_text)
