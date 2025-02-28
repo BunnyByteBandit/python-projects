@@ -1,0 +1,18 @@
+import time
+import os
+
+def moving_faces():
+    faces = [
+        ":-)",  # Happy face
+        ":-("   # Sad face
+    ]
+    
+    while True:
+        for face in faces:
+            os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal screen
+            print(face)  # Print the current face
+            time.sleep(1)  # Wait for 1 second
+            os.system('cls' if os.name == 'nt' else 'clear')  # Clear the screen after 1 second
+
+if __name__ == "__main__":
+    moving_faces()
